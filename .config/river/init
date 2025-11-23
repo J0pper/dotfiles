@@ -9,20 +9,27 @@
 # documentation.
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
+#
+
+# Execute waybar at start
+riverctl spawn "waybar -c ~/.config/waybar/river/config -s ~/.config/waybar/river/style.css"
+riverctl spawn "awww-daemon >/dev/null 2>&1 &"
+riverctl spawn "awww img ~/.config/hypr/assets/walls-catppuccin/mocha/car-wreck.png"
 
 # Super+T to start an instance of foot (https://codeberg.org/dnkl/foot)
-riverctl map normal Super T spawn foot
+riverctl map normal Super T spawn kitty
 
 # Spawn Browser
 riverctl map normal Super B spawn zen
 
-riverctl map normal Alt Space spawn rofi -show
+riverctl map normal Alt Space spawn "rofi -show combi -combi-modes "window,drun" -modes combi"
+riverctl map normal Alt W spawn "rofi -show window"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
 
 # Super+Shift+E to exit river
-riverctl map normal Super+Shift E exit
+riverctl map normal Super ESCAPE exit
 
 # Super+J and Super+K to focus the next/previous view in the layout stack
 riverctl map normal Super J focus-view next
@@ -84,7 +91,7 @@ do
     tags=$((1 << ($i - 1)))
 
     # Super+[1-9] to focus tag [0-8]
-    riverctl map normal Super $i set-focused-tags $tags
+    riverctl map normal Alt $i set-focused-tags $tags
 
     # Super+Shift+[1-9] to tag focused view with tag [0-8]
     riverctl map normal Super+Shift $i set-view-tags $tags
@@ -148,12 +155,16 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36
+riverctl background-color 0x002b36 
 riverctl border-color-focused 0x93a1a1
 riverctl border-color-unfocused 0x586e75
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
+
+riverctl hide-cursor timeout 5000
+riverctl focus-follows-cursor always
+riverctl set-cursor-warp on-output-change
 
 # Set keyboard layout
 riverctl keyboard-layout dk
@@ -172,7 +183,4 @@ riverctl rule-add -app-id "bar" csd
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6 &
-
-# Execute waybar at start
-exec waybar
+rivertile -view-padding 0 -outer-padding 0 &

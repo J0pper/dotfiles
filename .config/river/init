@@ -13,9 +13,10 @@
 
 # Execute waybar at start
 riverctl spawn "kanshi &"
-riverctl spawn "waybar -c ~/.config/waybar/river/config -s ~/.config/waybar/river/style.css"
+riverctl spawn "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css"
 riverctl spawn "awww-daemon >/dev/null 2>&1 &"
-riverctl spawn "awww img ~/.config/hypr/assets/walls-catppuccin/mocha/car-wreck.png"
+riverctl spawn "awww img ~/.config/hypr/assets/walls-catppuccin-mocha/car-wreck.png"
+riverctl spawn zen
 
 # Super+T to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super T spawn kitty

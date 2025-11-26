@@ -12,6 +12,7 @@
 #
 
 # Execute waybar at start
+riverctl spawn "kanshi &"
 riverctl spawn "waybar -c ~/.config/waybar/river/config -s ~/.config/waybar/river/style.css"
 riverctl spawn "awww-daemon >/dev/null 2>&1 &"
 riverctl spawn "awww img ~/.config/hypr/assets/walls-catppuccin/mocha/car-wreck.png"
@@ -32,8 +33,8 @@ riverctl map normal Super Q close
 riverctl map normal Super ESCAPE exit
 
 # Super+J and Super+K to focus the next/previous view in the layout stack
-riverctl map normal Super J focus-view next
-riverctl map normal Super K focus-view previous
+riverctl map normal Alt J focus-view next
+riverctl map normal Alt K focus-view previous
 
 # Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous
 # view in the layout stack
@@ -156,7 +157,7 @@ done
 
 # Set background and border color
 riverctl background-color 0x002b36 
-riverctl border-color-focused 0x93a1a1
+riverctl border-color-focused 0xcba6f7
 riverctl border-color-unfocused 0x586e75
 
 # Set keyboard repeat rate

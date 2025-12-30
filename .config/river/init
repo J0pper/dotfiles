@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # This is the example configuration file for river.
 #
@@ -9,7 +9,10 @@
 # documentation.
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
-#
+
+riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+
 
 # Execute waybar at start
 riverctl spawn "kanshi &"
@@ -19,13 +22,14 @@ riverctl spawn "awww img ~/.config/hypr/assets/walls-catppuccin-mocha/car-wreck.
 riverctl spawn zen
 
 # Super+T to start an instance of foot (https://codeberg.org/dnkl/foot)
-riverctl map normal Super T spawn kitty
+riverctl map normal Super T spawn foot
 
 # Spawn Browser
 riverctl map normal Super B spawn zen
 
-riverctl map normal Alt Space spawn "rofi -show combi -combi-modes "window,drun" -modes combi"
-riverctl map normal Alt W spawn "rofi -show window"
+# riverctl map normal Alt Space spawn "rofi -show combi -combi-modes "window,drun" -modes combi"
+# riverctl map normal Alt W spawn "rofi -show window"
+riverctl map normal Alt Space spawn "rofi -show drun"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -92,14 +96,14 @@ for i in $(seq 1 9)
 do
     tags=$((1 << ($i - 1)))
 
-    # Super+[1-9] to focus tag [0-8]
+    # Alt+[1-9] to focus tag [0-8]
     riverctl map normal Alt $i set-focused-tags $tags
 
     # Super+Shift+[1-9] to tag focused view with tag [0-8]
     riverctl map normal Super+Shift $i set-view-tags $tags
 
-    # Super+Control+[1-9] to toggle focus of tag [0-8]
-    riverctl map normal Super+Control $i toggle-focused-tags $tags
+    # Super+[1-9] to toggle focus of tag [0-8]
+    riverctl map normal Super $i toggle-focused-tags $tags
 
     # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
     riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
@@ -141,9 +145,9 @@ do
     riverctl map $mode None XF86Eject spawn 'eject -T'
 
     # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
-    riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5'
-    riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5'
-    riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute'
+    riverctl map -repeat normal None XF86AudioRaiseVolume spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+    riverctl map -repeat normal None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+    riverctl map -repeat normal None XF86AudioMute spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
     # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
     riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
@@ -157,9 +161,11 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36 
-riverctl border-color-focused 0xcba6f7
+riverctl background-color 0x000000
+riverctl border-color-focused 0xb4befe
 riverctl border-color-unfocused 0x586e75
+riverctl border-width 1
+riverctl xcursor-theme 'Bibata-Modern-Ice' 28
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
@@ -171,10 +177,18 @@ riverctl set-cursor-warp on-output-change
 # Set keyboard layout
 riverctl keyboard-layout dk
 
-riverctl input "pointer-2-14-ETPS/2_Elantech_Touchpad" events enabled
-riverctl input "pointer-2-14-ETPS/2_Elantech_Touchpad" middle-emulation enabled
-riverctl input "pointer-2-14-ETPS/2_Elantech_Touchpad" tap enabled
-riverctl input "pointer-2-14-ETPS/2_Elantech_Touchpad" natural-scroll enabled
+riverctl input "pointer-1102-4639-DELL0820:00_044E:121F_Touchpad" events enabled
+riverctl input "pointer-1102-4639-DELL0820:00_044E:121F_Touchpad" middle-emulation enabled
+riverctl input "pointer-1102-4639-DELL0820:00_044E:121F_Touchpad" tap enabled
+riverctl input "pointer-1102-4639-DELL0820:00_044E:121F_Touchpad" natural-scroll enabled
+
+# Touchscreen
+riverctl input "tablet-10182-1321-WingCool_Inc._TouchScreen_Stylus" events disabled
+riverctl input "tablet-10182-1321-WingCool_Inc._TouchScreen_Stylus" map-to-output DP-2
+riverctl input "pointer:pointer-10182-1321-WingCool_Inc._TouchScreen" events disabled
+riverctl input "pointer:pointer-10182-1321-WingCool_Inc._TouchScreen" map-to-output DP-2
+riverctl input "touch-10182-1321-WingCool_Inc._TouchScreen" events enabled
+riverctl input "touch-10182-1321-WingCool_Inc._TouchScreen" map-to-output DP-2
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 riverctl rule-add -app-id 'float*' -title 'foo' float

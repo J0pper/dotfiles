@@ -6,3 +6,17 @@ profile dual-high-refresh {
 profile single-right {
     output DP-1 enable mode 1920x1080@240Hz position 0,0
 }
+
+profile laptop-single {
+    output eDP-1 enable mode 1920x1080@60Hz position 0,0
+}
+
+profile laptop-tv {
+    output eDP-1 enable mode 1920x1080@60Hz position 0,0
+    output DP-1 enable mode 3840x2160@60Hz position 0,-2160
+}
+
+profile laptop-external {
+    output eDP-1 enable mode 1920x1080@60Hz position 1920,0
+    output DP-2 enable mode 1920x1200@119.999Hz position 0,0
+}

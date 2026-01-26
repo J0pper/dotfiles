@@ -21,6 +21,9 @@ riverctl spawn "awww-daemon >/dev/null 2>&1 &"
 riverctl spawn "awww img ~/.config/hypr/assets/walls-catppuccin-mocha/car-wreck.png"
 riverctl spawn zen
 
+# Screenshot
+riverctl map normal Super+Shift S spawn "shotman --capture region"
+
 # Super+T to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super T spawn foot
 

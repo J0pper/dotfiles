@@ -19,4 +19,9 @@ profile laptop-tv {
 profile laptop-external {
     output eDP-1 enable mode 1920x1080@60Hz position 1920,0
     output DP-2 enable mode 1920x1200@119.999Hz position 0,0
+
+profile dual-high-refresh-external {
+    output DP-1 enable mode 1920x1080@239.76Hz position 0,0
+    output DP-2 enable mode 1920x1080@144.001Hz position -1920,0
+    output HDMI-A-1 enable mode 1920x1200@60Hz position 1920,0
 }

@@ -13,7 +13,6 @@
 riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
 riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
 
-
 # Execute waybar at start
 riverctl spawn "kanshi &"
 riverctl spawn "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css"

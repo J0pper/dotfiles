@@ -16,13 +16,15 @@
   ],
   "modules-center": ["clock"],
   "modules-right": [
-    //"backlight",
     "network",
     "pulseaudio",
+    "backlight",
+    "battery"
+
+    //"backlight#2",
     //"temperature",
     //"custom/clipboard",
     //"memory",
-    "battery"
     //"tray"
     //"custom/power"
   ],
@@ -172,12 +174,21 @@
         //"on-click": "foot -e sensors"
     },
   "backlight": {
-    // "device": "acpi_video1",
+    "device": "intel_backlight",
     "format": "{icon} {percent: >3}%",
     "format-icons": ["", ""],
-    "on-scroll-down": "brightnessctl -c backlight set 5%-",
+    // "on-scroll-down": "brightnessctl -c backlight set 1%-",
     //"on-scroll-down": "light -A 5",
-    "on-scroll-up": "brightnessctl -c backlight set +5%"
+    // "on-scroll-up": "brightnessctl -c backlight set +5%"
+    //"on-scroll-up": "light -U 5"
+  },
+  "backlight#2": {
+    "device": "dell::kbd_backlight",
+    "format": "{icon} {percent: >3}%",
+    "format-icons": ["", ""],
+    // "on-scroll-down": "brightnessctl -c backlight set 1%-",
+    //"on-scroll-down": "light -A 5",
+    // "on-scroll-up": "brightnessctl -c backlight set +5%"
     //"on-scroll-up": "light -U 5"
   },
   "battery": {

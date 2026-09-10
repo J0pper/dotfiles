@@ -208,7 +208,7 @@ window#waybar {
 }
 
 #battery.charging {
-  color: @white;
+  color: @green;
   /* border-bottom: 2px solid #81a1c1; */
 }
 
@@ -236,6 +236,16 @@ window#waybar {
 
 #cpu #cpu-icon {
   color: @white;
+}
+
+#clock tooltip {
+    padding: 100px;
+    margin: 100px; 
+}
+
+#clock calendar {
+    padding: 100px;
+    margin: 100px; 
 }
 
 #memory {

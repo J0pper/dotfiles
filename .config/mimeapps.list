@@ -10,18 +10,5 @@ application/xhtml+xml=zen.desktop
 application/x-extension-xhtml=zen.desktop
 application/x-extension-xht=zen.desktop
 x-scheme-handler/discord=vesktop.desktop
-x-scheme-handler/lunarclient=lunarclient.desktop
-x-scheme-handler/discord-562286213059444737=lunarclient.desktop
 x-scheme-handler/postman=Postman.desktop
-
-[Added Associations]
-x-scheme-handler/http=firefox.desktop;zen.desktop;
-x-scheme-handler/https=firefox.desktop;zen.desktop;
-x-scheme-handler/chrome=firefox.desktop;zen.desktop;
-text/html=zen.desktop;firefox.desktop;
-application/x-extension-htm=zen.desktop;firefox.desktop;
-application/x-extension-html=zen.desktop;firefox.desktop;
-application/x-extension-shtml=zen.desktop;firefox.desktop;
-application/xhtml+xml=zen.desktop;firefox.desktop;
-application/x-extension-xhtml=zen.desktop;firefox.desktop;
-application/x-extension-xht=zen.desktop;firefox.desktop;
+application/pdf=zen.desktop

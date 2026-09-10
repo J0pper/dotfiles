@@ -2,4 +2,33 @@
 	email = Jeppe.vadandersen@gmail.com
 	name  = Jeppe Vad Andersen
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[alias]
+    # Safe force push
+    force = push --force-with-lease --force-if-includes
+
+    # Better log view
+    hist = log --pretty='%C(auto)%h - %s %C(green)(%ar) %C(bold blue)<%an>%C(auto)%d' --graph
+
+    # Switch to main/master automatically
+    main = !f() { git switch $(git branch -l main master --format '%(refname:short)' | head -n1); }; f
+
+    # Interactive staging
+    parts = add --patch
+
+    # Fix last commit without changing message
+    fix = commit --amend --no-edit --date=now
+
+    # Who's been contributing?
+    rank = shortlog --summary --numbered --no-merges
+
+    # Get to repo root
+    root = rev-parse --show-toplevel
+
+    
+    # Get remote URL
+    upstream = config --get remote.origin.url
+
+    # Fun ones
+    yeet = push
+    younk = pull

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-export XKB_DEFAULT_LAYOUT="dk"
 
+# Open custom context menu
 # Programs
 argenctl binding set normal Super T exec "foot"
-argenctl binding set normal Super B exec "zen"
-argenctl binding set normal Alt Space sh "rofi -show drun"
+argenctl binding set normal Super B exec "zen-beta"
+argenctl binding set normal Alt Space sh "fuzzel"
 
 # Reload config
 argenctl binding set normal Super+Shift C exec "$0"
@@ -37,13 +37,13 @@ argenctl binding set normal Super+Control J layout set secondary-ratio +0.05
 argenctl pointer-binding set normal Super BTN_LEFT move-window
 argenctl pointer-binding set normal Super BTN_RIGHT resize-window
 argenctl pointer-binding set normal Super BTN_MIDDLE scroll
-
-# Context
-argenctl binding set normal Super+Shift+Control X context close
+# Context argenctl binding set normal Super+Shift+Control X context close
 argenctl binding set normal Super Tab context switch --last
 
 # Switch contexts interactively
-argenctl binding set normal Super Space sh 'argenctl context switch "$(argenctl context list | fuzzel -d --only-match)"'
+argenctl binding set normal Super Space sh '
+    argenctl context switch "$(argenctl context list | fuzzel -d --only-match)"
+'
 
 # Create new context interactively
 argenctl binding set normal Super+Shift Space sh '
@@ -76,12 +76,12 @@ argenctl binding set normal Super+Shift D sh '
 # Adopt all orphans
 argenctl binding set normal Super+Control D sh '
     argenctl window list --json | jq -r ".[] | select(.contexts | length == 0) | .id" | while read -r id; do
-        argenctl window attach "$id"
+    argenctl window attach "$id"
     done
 '
 
 # Layouts
-argenctl binding set normal Super Minus layout switch prev
+argenctl binding set normal Super Plus layout switch prev
 argenctl binding set normal Super Equal layout switch next
 argenctl binding set normal Super 1 layout switch stacktile
 argenctl binding set normal Super 2 layout switch monocle
@@ -103,8 +103,8 @@ done
 
 # Passthrough mode
 argenctl mode declare passthrough
-argenctl binding set normal Super Grave mode enter passthrough
-argenctl binding set passthrough Super Grave mode enter normal
+argenctl binding set normal Super P mode enter passthrough
+argenctl binding set passthrough Super P mode enter normal
 
 # Keyboard repeat rate and delay
 argenctl config set repeat 50 300
@@ -113,4 +113,13 @@ argenctl config set repeat 50 300
 argenctl rule add float --app-id "*my-app"
 argenctl rule add no-tearing
 argenctl rule add tearing --title "my-game*"
-export XKB_DEFAULT_LAYOUT="dk"
+
+# Border style
+argenctl config set border-width 2
+argenctl config set border-color-focused 0xb4befe
+argenctl config set border-color-unfocused 0x586e75
+
+# Labels
+config set label-mode always
+
+argenctl binding set normal Super A sh "~/.config/argen/context-menu.sh"

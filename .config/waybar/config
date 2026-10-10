@@ -98,13 +98,14 @@
       "deactivated": ""
     }
   },
+
     "tray": {
         "icon-size": 14,
         "spacing": 15
     },
     "clock": {
         "format": "{:%d %m %Y W%V | %H:%M:%S}",	//24 hour format
-        "format-alt": "{:%A, %B %d, %Y Week %V (%H:%M:%S)}",
+        // "format-alt": "{:%A, %B %d, %Y Week %V (%H:%M:%S)}",
 
         // "tooltip-format": "n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
         "tooltip-format": "<tt>{calendar}</tt>",
@@ -123,6 +124,7 @@
 		    }
         },
         "actions": {
+            "on-click": "<tt>{calendar}</tt>",
             "on-click-right": "mode",
             "on-click-forward": "tz_up",
             "on-click-backward": "tz_down",
